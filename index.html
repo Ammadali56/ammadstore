@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ammad Store - Premium Cricket Gear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="ri-shopping-bag-3-fill"></i>
+                <span class="store-name-nav">Ammad Store</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#" onclick="openTrackModal(event)">Track Order</a>
+            </div>
+            <div class="nav-actions">
+                <button class="cart-btn" id="cartBtn" onclick="openCartModal()">
+                    <i class="ri-shopping-cart-2-line"></i>
+                    <span class="cart-count">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Store Name and Stats -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="main-store-name">Ammad Store</h1>
+
+            <div class="store-stats">
+                <div class="stat-box">
+                    <i class="ri-star-fill text-accent"></i>
+                    <div class="stat-info">
+                        <span class="stat-number">4.9/5</span>
+                        <span class="stat-text">Rating Point</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <i class="ri-shopping-bag-fill text-primary"></i>
+                    <div class="stat-info">
+                        <span class="stat-number">25,840+</span>
+                        <span class="stat-text">Total Sales</span>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <i class="ri-shield-user-fill text-success"></i>
+                    <div class="stat-info">
+                        <span class="stat-number">18,500+</span>
+                        <span class="stat-text">Trusted Users</span>
+                    </div>
+                </div>
+            </div>
+
+            <p class="hero-subtitle">Your ultimate destination for professional-grade cricket equipment. Premium gear,
+                unmatched quality.</p>
+            <div class="hero-btns">
+                <a href="#products" class="btn btn-primary">Shop Collection <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=800&auto=format&fit=crop"
+                alt="Cricket Stadium">
+        </div>
+    </section>
+
+    <!-- About & Ratings Section -->
+    <section id="about" class="about-section">
+        <div class="section-header">
+            <h2>Why Choose Us?</h2>
+            <p>We are dedicated to providing the best cricket gear.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="icon-box"><i class="ri-shield-star-line"></i></div>
+                <h3>Premium Quality</h3>
+                <p>All our products are sourced from top manufacturers ensuring international standards.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ri-truck-line"></i></div>
+                <h3>Fast Delivery</h3>
+                <p>We ensure your gear reaches you quickly and safely across the entire country.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="ri-customer-service-2-line"></i></div>
+                <h3>24/7 Support</h3>
+                <p>Our dedicated team is always here to help you choose the right equipment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="section-header">
+            <h2>Explore Our Collection</h2>
+            <p>Over 35+ premium quality cricket products designed for champions.</p>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filters" id="categoryFilters">
+            <button class="filter-btn active" data-filter="All">All</button>
+            <button class="filter-btn" data-filter="Bats">Bats</button>
+            <button class="filter-btn" data-filter="Balls">Balls</button>
+            <button class="filter-btn" data-filter="Footwear">Footwear</button>
+            <button class="filter-btn" data-filter="Clothing">Clothing</button>
+            <button class="filter-btn" data-filter="Protection">Protection</button>
+            <button class="filter-btn" data-filter="Accessories">Accessories</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products injected via JS -->
+        </div>
+    </section>
+
+    <!-- Product Details Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeProductModal()">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content modal-sm">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            <h2 class="modal-title"><i class="ri-shopping-cart-2-fill"></i> Your Cart</h2>
+            <div id="cartItemsContainer" class="cart-items-container">
+                <!-- Cart items injected via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <span id="cartTotal" class="cart-total-amount">Rs. 0</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="proceedToPayment()">Proceed to
+                    Payment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content modal-sm">
+            <span class="close-btn" onclick="closePaymentModal()">&times;</span>
+            <h2 class="modal-title"><i class="ri-bank-card-fill"></i> Make Payment</h2>
+
+            <div class="payment-instructions">
+                <p>Please transfer the total amount <strong><span id="paymentTotal">Rs. 0</span></strong> to the
+                    following account to confirm your order:</p>
+                <div class="account-number">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Easypaisa_logo.svg" height="20"
+                        alt="Easypaisa" style="margin-right:10px;">
+                    0300-1234567
+                </div>
+                <p class="account-name">Account Title: Ammad Store</p>
+            </div>
+
+            <div class="form-group">
+                <label>Your Phone Number</label>
+                <input type="text" id="custPhone" class="form-control" placeholder="03XXXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label>Transaction ID (TID) / Reference</label>
+                <input type="text" id="custTid" class="form-control" placeholder="e.g. 1234567890">
+            </div>
+            <div class="form-group">
+                <label>Delivery Address</label>
+                <textarea id="custAddress" class="form-control" placeholder="Enter complete address..."
+                    rows="3"></textarea>
+            </div>
+
+            <button class="btn btn-success" style="width: 100%;" onclick="confirmOrder()">Confirm Order & Get
+                Tracking</button>
+        </div>
+    </div>
+
+    <!-- Order tracking success/bar modal -->
+    <div id="trackingModal" class="modal">
+        <div class="modal-content modal-sm text-center">
+            <span class="close-btn" onclick="closeTrackingModal()">&times;</span>
+            <div id="trackingContent">
+                <i class="ri-checkbox-circle-fill" style="font-size: 4rem; color: var(--success);"></i>
+                <h2 class="modal-title" style="margin-top: 1rem;">Order Placed Successfully!</h2>
+                <p>Your order tracking ID is:</p>
+                <div class="tracking-id-display" id="displayTrackingId">ORD-XXXXXX</div>
+
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem; text-align: left;">Tracking Status:</h3>
+
+                <div class="tracking-bar">
+                    <div class="track-step active">
+                        <div class="track-icon"><i class="ri-file-list-3-line"></i></div>
+                        <p>Placed</p>
+                    </div>
+                    <div class="track-line active"></div>
+                    <div class="track-step active">
+                        <div class="track-icon"><i class="ri-bank-card-line"></i></div>
+                        <p>Paid</p>
+                    </div>
+                    <div class="track-line"></div>
+                    <div class="track-step">
+                        <div class="track-icon"><i class="ri-truck-line"></i></div>
+                        <p>Shipped</p>
+                    </div>
+                    <div class="track-line"></div>
+                    <div class="track-step">
+                        <div class="track-icon"><i class="ri-home-smile-line"></i></div>
+                        <p>Delivered</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="trackSearchContent" class="hidden text-left">
+                <h2 class="modal-title"><i class="ri-map-pin-line"></i> Track Your Order</h2>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label>Enter Tracking ID</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" id="searchTrackId" class="form-control" placeholder="e.g. ORD-170...">
+                        <button class="btn btn-primary" onclick="searchOrder()">Track</button>
+                    </div>
+                </div>
+                <div id="searchTrackResult" style="margin-top: 1.5rem;" class="hidden">
+                    <div class="tracking-bar">
+                        <div class="track-step active">
+                            <div class="track-icon"><i class="ri-file-list-3-line"></i></div>
+                            <p>Placed</p>
+                        </div>
+                        <div class="track-line active"></div>
+                        <div class="track-step active">
+                            <div class="track-icon"><i class="ri-bank-card-line"></i></div>
+                            <p>Paid</p>
+                        </div>
+                        <div class="track-line"></div>
+                        <div class="track-step">
+                            <div class="track-icon"><i class="ri-truck-line"></i></div>
+                            <p>Shipped</p>
+                        </div>
+                        <div class="track-line"></div>
+                        <div class="track-step">
+                            <div class="track-icon"><i class="ri-home-smile-line"></i></div>
+                            <p>Delivered</p>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--gray);">Status: <strong>Order Paid,
+                            waiting for shipment.</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2>Ammad Store</h2>
+                <p>Premium cricket gear for professionals and enthusiasts.</p>
+            </div>
+            <div class="how-to-buy">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#products" style="color:white; text-decoration:none;"><i
+                                class="ri-arrow-right-s-line"></i> All Products</a></li>
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="openTrackModal(event)"><i
+                                class="ri-arrow-right-s-line"></i> Track Order</a></li>
+                    <li><a href="#" style="color:white; text-decoration:none;" onclick="openCartModal()"><i
+                                class="ri-arrow-right-s-line"></i> Shopping Cart</a></li>
+                </ul>
+            </div>
+            <div class="contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="ri-phone-fill"></i> +92 300 1234567</p>
+                <p><i class="ri-mail-fill"></i> support@ammadstore.com</p>
+                <p><i class="ri-map-pin-fill"></i> 123 Cricket Street, Sports City</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ammad Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
